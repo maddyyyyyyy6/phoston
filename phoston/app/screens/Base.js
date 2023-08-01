@@ -1,5 +1,5 @@
 import react, { useEffect, useState } from 'react';
-import { Button, StyleSheet, Text, TouchableOpacity, Vibration, View } from 'react-native';
+import { Button, StyleSheet, Text, ToastAndroid, TouchableOpacity, Vibration, View } from 'react-native';
 
 export default Base = () => {
     const [state, setState] = useState(false);
@@ -7,19 +7,21 @@ export default Base = () => {
         setState(true);
         Vibration.vibrate(10 * 20);
         console.log("Alarm is working")
-        
+        ToastAndroid.show("Phoston Working in background", ToastAndroid.SHORT)
+
     }
     const Off = () => {
         setState(false);
         Vibration.vibrate(10 * 20);
         console.log("Alarm stopped")
+        ToastAndroid.show("Phoston Stopped", ToastAndroid.SHORT)
     }
     return (
         <View style={styles.area} >
-
+            {/* 
             <Text style={styles.tag}>
                 Phoston
-            </Text>
+            </Text> */}
             {
                 !state ?
                     // <Button title="Start" onPress={On} />
@@ -55,17 +57,9 @@ const Buzzer = ({ onPress, state }) => {
     const on = {
         container: {
             backgroundColor: '#52B69A',
-            width: 200,
-            height: 200,
-            borderRadius: 100,
-            alignContent: 'center',
-            justifyContent: 'center',
-            alignItems: 'center'
         },
         text: {
 
-            fontSize: 60,
-            fontWeight: 'bold',
             color: '#36816C',
         }
 
@@ -73,18 +67,10 @@ const Buzzer = ({ onPress, state }) => {
     const off = {
         container: {
             backgroundColor: '#DC2F02',
-            width: 200,
-            height: 200,
-            borderRadius: 100,
-            alignContent: 'center',
-            justifyContent: 'center',
-            alignItems: 'center'
 
         },
         text: {
 
-            fontSize: 60,
-            fontWeight: 'bold',
             color: '#9D0208',
         }
 
@@ -111,15 +97,15 @@ const Buzzer = ({ onPress, state }) => {
 
 const buzzer = StyleSheet.create({
     buzzerContainer: {
-        width: 200,
-        height: 200,
-        borderRadius: 100,
+        width: 250,
+        height: 250,
+        borderRadius: 150,
         alignContent: 'center',
         justifyContent: 'center',
         alignItems: 'center'
     },
     buzzerText: {
-        fontSize: 60,
+        fontSize: 80,
         fontWeight: 'bold',
 
     }

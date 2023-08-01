@@ -1,9 +1,11 @@
+import { Picker } from '@react-native-picker/picker';
 import react, { useEffect, useState } from 'react';
-import { Button, StyleSheet, Text, ToastAndroid, TouchableOpacity, Vibration, View } from 'react-native';
+import { StyleSheet, Text, ToastAndroid, TouchableOpacity, Vibration, View } from 'react-native';
 
 export default Base = () => {
     const [state, setState] = useState(false);
-    console.log("Current State:",state)
+    const [intervalue, setIntervalue] = useState(3000)
+    console.log("Current State:", state)
     const On = () => {
         setState(true);
         Vibration.vibrate(10 * 20);
@@ -26,11 +28,13 @@ export default Base = () => {
             if (state) {
                 Vibration.vibrate(1000);
             }
-        }, 3000); // 1 minute (60000 milliseconds)
+        }, intervalue); // 1 minute (60000 milliseconds)
 
         // Clean up the interval when the component unmounts
         return () => clearInterval(interval);
     }, [state]);
+    console.log(intervalue)
+    console.log(typeof intervalue)
     return (
         <View style={styles.area} >
             {/* 
@@ -45,6 +49,26 @@ export default Base = () => {
                     // <Button title="Stop" onPress={Off} />
                     <Buzzer state={state} onPress={Off} />
             }
+
+            {/* area for options */}
+            <View
+                style={{ borderWidth: 1, borderColor: 'black',borderRadius:10 }}
+
+            >
+
+                <Picker
+                    selectedValue={intervalue.toString()}
+                    onValueChange={(value) => setIntervalue(parseInt(value))}
+                >
+                    <Picker.Item label="1 second" value="1000" />
+                    <Picker.Item label="2 seconds" value="2000" />
+                    <Picker.Item label="5 seconds" value="5000" />
+                    <Picker.Item label="10 seconds" value="10000" />
+                    <Picker.Item label="30 seconds" value="30000" />
+                    <Picker.Item label="1 minute" value="60000" selected />
+                    <Picker.Item label="2 minutes" value="120000" />
+                </Picker>
+            </View>
         </View>
     );
 }
@@ -122,6 +146,7 @@ const buzzer = StyleSheet.create({
     buzzerText: {
         fontSize: 80,
         fontWeight: 'bold',
+        fontFamily: 'Inter_900Black'
 
     }
 })

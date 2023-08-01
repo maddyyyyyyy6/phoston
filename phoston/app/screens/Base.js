@@ -16,6 +16,17 @@ export default Base = () => {
         console.log("Alarm stopped")
         ToastAndroid.show("Phoston Stopped", ToastAndroid.SHORT)
     }
+
+    useEffect(() => {
+        // Start the interval when the component mounts
+        const interval = setInterval(() => {
+            // Vibrate the device for 1 second
+            Vibration.vibrate(1000);
+        }, 30000); // 1 minute (60000 milliseconds)
+
+        // Clean up the interval when the component unmounts
+        return () => clearInterval(interval);
+    }, []);
     return (
         <View style={styles.area} >
             {/* 

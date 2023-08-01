@@ -3,6 +3,7 @@ import { Button, StyleSheet, Text, ToastAndroid, TouchableOpacity, Vibration, Vi
 
 export default Base = () => {
     const [state, setState] = useState(false);
+    console.log("Current State:",state)
     const On = () => {
         setState(true);
         Vibration.vibrate(10 * 20);
@@ -19,14 +20,17 @@ export default Base = () => {
 
     useEffect(() => {
         // Start the interval when the component mounts
+
         const interval = setInterval(() => {
             // Vibrate the device for 1 second
-            Vibration.vibrate(1000);
-        }, 30000); // 1 minute (60000 milliseconds)
+            if (state) {
+                Vibration.vibrate(1000);
+            }
+        }, 3000); // 1 minute (60000 milliseconds)
 
         // Clean up the interval when the component unmounts
         return () => clearInterval(interval);
-    }, []);
+    }, [state]);
     return (
         <View style={styles.area} >
             {/* 

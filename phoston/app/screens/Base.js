@@ -4,19 +4,18 @@ import { StyleSheet, Text, ToastAndroid, TouchableOpacity, Vibration, View } fro
 
 export default Base = () => {
     const [state, setState] = useState(false);
-    const [intervalue, setIntervalue] = useState(3000)
-    console.log("Current State:", state)
+    const [intervalue, setIntervalue] = useState(60000)
     const On = () => {
         setState(true);
         Vibration.vibrate(10 * 20);
-        console.log("Alarm is working")
+        console.log("Alarm is working", intervalue)
         ToastAndroid.show("Phoston Working in background", ToastAndroid.SHORT)
 
     }
     const Off = () => {
         setState(false);
         Vibration.vibrate(10 * 20);
-        console.log("Alarm stopped")
+        console.log("Alarm stopped", intervalue)
         ToastAndroid.show("Phoston Stopped", ToastAndroid.SHORT)
     }
 
@@ -33,8 +32,6 @@ export default Base = () => {
         // Clean up the interval when the component unmounts
         return () => clearInterval(interval);
     }, [state]);
-    console.log(intervalue)
-    console.log(typeof intervalue)
     return (
         <View style={styles.area} >
             {/* 
@@ -52,7 +49,7 @@ export default Base = () => {
 
             {/* area for options */}
             <View
-                style={{ borderWidth: 1, borderColor: 'black',borderRadius:10 }}
+                style={{ borderWidth: 1, borderColor: 'black', borderRadius: 10 }}
 
             >
 
@@ -146,7 +143,7 @@ const buzzer = StyleSheet.create({
     buzzerText: {
         fontSize: 80,
         fontWeight: 'bold',
-        fontFamily: 'Inter_900Black'
+        fontFamily: 'Inter_400Regular'
 
     }
 })

@@ -143,7 +143,7 @@ const buzzer = StyleSheet.create({
     buzzerText: {
         fontSize: 80,
         fontWeight: 'bold',
-        fontFamily: 'Inter_400Regular'
+        // fontFamily: 'Inter_400Regular'
 
     }
 })

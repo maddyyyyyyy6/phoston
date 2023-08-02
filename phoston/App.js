@@ -1,10 +1,10 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import Base from './app/screens/Base';
-import { useFonts, Inter_900Black } from '@expo-google-fonts/inter';
+import { useFonts, Inter_900Black, Inter_400Regular } from '@expo-google-fonts/inter';
 export default function App() {
   let [fontsLoaded] = useFonts({
-    Inter_900Black,
+    Inter_900Black, Inter_400Regular
   });
 
   if (!fontsLoaded) {
@@ -24,5 +24,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+    fontFamily: 'Inter_400Regular'
   },
 });
